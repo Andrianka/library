@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Book</th>
+      <th>Books</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,7 +15,9 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= category.book_id %></td>
+        <% category.books.each do |book| %>
+          <td><%= book.title %></td>
+        <% end %>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

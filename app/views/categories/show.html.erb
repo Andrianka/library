@@ -3,9 +3,12 @@
   <%= @category.name %>
 </p>
 
+
 <p>
   <strong>Books:</strong>
-  <%= @category.book_id %>
+  <% @category.books.each do |book| %>
+  	<%=link_to  book.title, book_path(book) %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
