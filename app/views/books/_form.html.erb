@@ -1,4 +1,4 @@
-<%= form_for(@book) do |f| %>
+<%= form_for @book do |f| %>
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -15,12 +15,10 @@
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
-    <%= f.fields_for :category do |k| %>
-      <div class="field">
-        <%= k.label :category %><br>
-        <%= k.collection_select(:category_id, Category.all(order: :name), :id, :name)%>
-      </div>
-    <% end %>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select") %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
