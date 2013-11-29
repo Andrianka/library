@@ -1,0 +1,38 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("1.jpg", :alt => "r1") %>
+      <div class="carousel-caption">
+        slide 1
+      </div>
+    </div>
+    <div class="item">
+	  	<%= image_tag("2.jpg", :alt => "2") %>
+	  	<div class="carousel-caption">
+	    	slide 2
+ 	  	</div>
+		</div>
+    <div class="item">
+      <%= image_tag("3.jpg", :alt => "3") %>
+      <div class="carousel-caption">
+        slide 3
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+<span class="icon-prev"></span>
+</a>
+<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+<span class="icon-next"></span>
+</a>
+</div>
