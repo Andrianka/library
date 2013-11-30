@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 						format: { with: VALID_EMAIL_REGEX } 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
-	belongs_to :category
+	has_one :address
 	has_secure_password
 
 	def User.new_remember_token
