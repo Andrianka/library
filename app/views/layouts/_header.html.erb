@@ -6,11 +6,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/">Library</a>
+      <%= link_to "Library", root_path ,class: "brand" %>
       <div class="container nav-collapse ">
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= current_user.first_name %><%= link_to "sign out", signout_path, method: "delete" %></li>
+            <li><%= link_to "#{current_user.first_name},sign out", signout_path, method: "delete" %></li>
           <%else%>
             <li><%= link_to "Sign up", signup_path  %></li>
             <li><%= link_to "Sign in", signin_path %></li>
