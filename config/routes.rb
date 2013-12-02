@@ -1,5 +1,5 @@
 LibraryApp::Application.routes.draw do
-  resources :users
+  resources :users, only: [:new, :create, :destroy, :edit]
   resources :sessions, only: [:new, :create, :destroy]
 
   match "/signup", to: "users#new", via: "get"
@@ -8,6 +8,7 @@ LibraryApp::Application.routes.draw do
   match "/about", to: "static_pages#about", via: 'get'
   match "/help",to: "static_pages#help", via: "get"
   match "/contact", to: "static_pages#contact", via: "get"
+  match "/profile", to: "static_pages#profile", via: "get"
   resources :books
 
   resources :categories
