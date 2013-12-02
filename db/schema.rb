@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130183526) do
+ActiveRecord::Schema.define(version: 20131202185409) do
 
   create_table "addresses", force: true do |t|
     t.string   "city"
@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(version: 20131130183526) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "address_id"
   end
 
+  add_index "users", ["address_id"], name: "index_users_on_address_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	validates :last_name, presence: true
 	has_one :address
 	has_secure_password
+	accepts_nested_attributes_for :address
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64

@@ -1,0 +1,26 @@
+<%= f.fields_for :address do |k|%>
+	<div class="row">
+    <%= k.label :city, class: "col col-lg2 control label" %><br>
+    <div class="col col-lg-10">
+      <%= k.text_field :city %>
+    </div>
+  </div>
+  <div class="row">
+    <%= k.label :street, class: "col col-lg2 control label" %><br>
+    <div class="col col-lg-10">
+      <%= k.text_field :street %>
+    </div>
+  </div>
+  <div class="row">
+    <%= k.label :number, class: "col col-lg2 control label" %><br>
+    <div class="col col-lg-10">
+      <%= k.text_field :number %>
+    </div>
+  </div>
+  <div class="row">
+    <%= k.label :zip_code, class: "col col-lg2 control label" %><br>
+    <div class="col col-lg-10">
+      <%= k.text_field :zip_code %>
+    </div>
+  </div>
+<% end %>
