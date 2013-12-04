@@ -14,8 +14,10 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    session[:user_params] ||={}
+    @user = User.new(session[:user_params])
     @user.build_address
+    @user.current_step = session[:user_step]
   end
 
   # GET /users/1/edit
@@ -25,14 +27,25 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to root_path, notice: 'Account was successfully created.' }
+    session[:user_params].deep_merge!(params[:user]) if params[:user]
+    @user = User.new(session[:user_params])
+    @user.current_step = session[:user_step]
+    if @user.valid?
+      if params[:back_button]
+        @user.previous_step
+      elsif @user.last_step?
+        @user.save if @user.all_valid?
       else
-        format.html { render action: 'new' }
+        @user.next_step
       end
+      session[:user_step] = @user.current_step
+    end
+    if @user.new_record?
+      render "new"
+    else
+      session[:user_step] = session[:user_params] = nil
+      flash[:notice] = "user saved!"
+      redirect_to root_path
     end
   end
 

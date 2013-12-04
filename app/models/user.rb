@@ -11,6 +11,47 @@ class User < ActiveRecord::Base
 	has_secure_password
 	accepts_nested_attributes_for :address
 
+	attr_writer :current_step
+
+	def User.new_remember_token
+		SecureRandom.urlsafe_base64
+	end
+
+	def User.encrypt(token)
+		Digest::SHA1.hexdigest(token.to_s)
+	end
+
+	def steps
+		%w[address_information user_information]
+	end
+
+	def current_step
+		@current_step || steps.first
+	end
+
+	def next_step
+		self.current_step = steps[steps.index(current_step)+1]
+	end
+
+	def previous_step
+		self.current_step = steps[steps.index(current_step)-1]
+	end
+
+	def first_step?
+		self.current_step == steps.first
+	end
+
+	def last_step?
+		self.current_step == steps.last
+	end
+
+	def all_valid?
+	  steps.all? do |step|
+	    self.current_step = step
+	    valid?
+	  end
+	end
+
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
 	end
